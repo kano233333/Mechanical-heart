@@ -3,7 +3,8 @@ cc.Class({
 
     properties: {
         moveX: 10,
-        moveY: 40
+        moveY: 40,
+        isDuration: 0
     },
 
     start () {
@@ -11,6 +12,9 @@ cc.Class({
     },
     cloudTranslate() {
         var duration = (Math.random()+0.5)*10;
+        if(this.isDuration !== 0){
+            duration = this.isDuration;
+        }
         var jump1 = cc.moveTo(duration, this.node.x + this.moveX, this.node.y + this.moveY);
         var jump2 = cc.moveTo(duration, this.node.x - this.moveX*2, this.node.y - this.moveY*2);
         var series1 = cc.sequence(jump1,jump2).repeatForever();
